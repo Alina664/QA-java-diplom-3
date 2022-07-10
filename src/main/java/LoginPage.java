@@ -1,7 +1,11 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginPage extends Header{
 
@@ -12,6 +16,10 @@ public class LoginPage extends Header{
     //локатор-ссылка для заполнения пароля
     @FindBy(how = How.XPATH,using = ".//label[text()='Пароль']/following::input")
     private SelenideElement passwordField;
+
+    //локатор для текста ошибки в количестве символов для пароля при регистрации
+    @FindBy(how = How.XPATH,using = ".//label[text()='Пароль']/following::input")
+    private SelenideElement passwordErrorText;
 
     //локатор-ссылка для заполнения имени
     @FindBy(how = How.XPATH,using = ".//label[text()='Имя']/following::input")
@@ -75,8 +83,16 @@ public class LoginPage extends Header{
         return textAuthFormLink.getText();
     }
 
-    public Boolean isVisibleContainText(String textFind){
+    public String getErrorTextEnterPassword(){
+        return passwordErrorText.getText();
+    }
+
+    public Boolean isVisibleTextOnPage(String textFind){
         return textAuthFormLink.shouldHave(Condition.text(textFind)).isDisplayed();
+    }
+
+    public Boolean isVisibleErrorTextEnterPassword(){
+        return passwordErrorText.isDisplayed();
     }
 
     public void clickLinkRecoveryPassword(){
@@ -93,5 +109,17 @@ public class LoginPage extends Header{
 
     public void clickButtonRegisterUser(){
         registerButton.click();
+    }
+
+    public HashMap<String, String> registerUserWithRandomData(){
+        HashMap<String, String> account = new HashMap<>();
+        // метод randomAlphabetic генерирует строку, состоящую только из букв, в качестве параметра передаём длину строки
+        String userEmail = RandomStringUtils.randomAlphabetic(10) + "@yandex.ru";
+        // с помощью библиотеки RandomStringUtils генерируем пароль
+        String userPassword = RandomStringUtils.randomAlphabetic(10);
+        // с помощью библиотеки RandomStringUtils генерируем имя курьера
+        String userName = RandomStringUtils.randomAlphabetic(10);
+        account.putAll(Map.of("email", userEmail,"password", userPassword,"name", userName));
+        return account;
     }
 }

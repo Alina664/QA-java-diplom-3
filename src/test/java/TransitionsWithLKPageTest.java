@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -6,7 +8,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class TransitionsPageTest {
+@Epic("Go to page")
+public class TransitionsWithLKPageTest {
     private final String email = "alina22222@yandex.ru";
     private final String password = "12345678";
     LoginPage addUser;
@@ -20,6 +23,7 @@ public class TransitionsPageTest {
 
     //Переход в личный кабинет
     @Test
+    @Description("Переход в личный кабинет со страницы конструктор")
     public void loginFromLKWithMainPage () {
         addUser.clickLK();
         PersonalCabinet lkPage = page(PersonalCabinet.class);
@@ -28,6 +32,7 @@ public class TransitionsPageTest {
 
     //Выход из аккаунта
     @Test
+    @Description("Выход из аккаунта со страницы личного кабинета")
     public void logoutWithLK () {
         addUser.clickLK();
         PersonalCabinet lkPage = page(PersonalCabinet.class);
@@ -38,6 +43,7 @@ public class TransitionsPageTest {
 
     //Переход из личного кабинета в конструктор по кнопке Конструктор
     @Test
+    @Description("Переход из личного кабинета в конструктор по кнопке Конструктор")
     public void goToTheMainPageWithLKFromConstructorButton () {
         addUser.clickLK();
         PersonalCabinet lkPage = page(PersonalCabinet.class);
@@ -48,6 +54,7 @@ public class TransitionsPageTest {
 
     //Переход из личного кабинета в конструктор по Лого
     @Test
+    @Description("Переход из личного кабинета в конструктор по Лого")
     public void goToTheMainPageWithLKFromLogoButton () {
         addUser.clickLK();
         PersonalCabinet lkPage = page(PersonalCabinet.class);

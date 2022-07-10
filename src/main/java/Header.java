@@ -13,7 +13,7 @@ public class Header {
     private SelenideElement orderFeedButton;
 
     //локатор-ссылка для лого сайта
-    @FindBy(how = How.CLASS_NAME,using = "active")
+    @FindBy(how = How.CLASS_NAME,using = "AppHeader_header__logo__2D0X2")
     private SelenideElement logoStellarBurgersButton;
 
     //локатор-ссылка для перехода в личный кабинет

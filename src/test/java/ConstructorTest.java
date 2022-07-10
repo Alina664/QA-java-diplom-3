@@ -1,41 +1,41 @@
+import io.qameta.allure.Epic;
+import jdk.jfr.Description;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.localStorage;
 import static org.junit.Assert.*;
 
-public class ContructorTest {
+@Epic("Section 'Constructor'")
+public class ConstructorTest {
+    MainPage mainPage;
 
-    @Test
-    public void goToSauce () {
-        //Configuration.browser = "firefox";
-        // открывается страница и создаётся экземпляр класса страницы
-        MainPage mainPage= open(MainPage.URL,
-                MainPage.class);
-        mainPage.clickSauce();
-        assertTrue("message",mainPage.isVisibleSauce());
+    @Before
+    public void openURL(){
+        mainPage= open(MainPage.URL, MainPage.class);
     }
 
     @Test
+    @Description("При нажатии на вкладку Соусы, в блоке с ингридиентами список перемещается к соусам")
+    public void goToSauce () {
+        mainPage.clickSauce();
+        assertTrue("Проверяем видимость слова Соусы",mainPage.isVisibleSauce());
+    }
+
+    @Test
+    @Description("При нажатии на вкладку Начинки, в блоке с ингридиентами список перемещается к начинкам")
     public void goToBun () {
-        //Configuration.browser = "firefox";
-        // открывается страница и создаётся экземпляр класса страницы
-        MainPage mainPage= open(MainPage.URL,
-                MainPage.class);
         mainPage.clickIngredients();
         mainPage.clickBun();
-        assertTrue("message",mainPage.isVisibleIngredients());
+        assertTrue("Проверяем видимость слова Начинки",mainPage.isVisibleIngredients());
     }
 
     @Test
+    @Description("При нажатии на вкладку Булки, в блоке с ингридиентами список перемещается к булкам")
     public void goToIngredients () {
-        //Configuration.browser = "firefox";
-        // открывается страница и создаётся экземпляр класса страницы
-        MainPage mainPage= open(MainPage.URL,
-                MainPage.class);
         mainPage.clickIngredients();
-        assertTrue("message", mainPage.isVisibleIngredients());
+        assertTrue("Проверяем видимость слова Булки", mainPage.isVisibleIngredients());
     }
 
     @After
