@@ -47,6 +47,10 @@ public class MainPage {
     @FindBy(how = How.XPATH,using = ".//div[@class='BurgerIngredients_ingredients__menuContainer__Xu3Mo']/h2[text()='Соусы']")
     private SelenideElement sauceTextOnIngredientList;
 
+    //локатор для проверки в каком разделе скролла мы находимся, может Булки, Начинки и соусы
+    @FindBy(how = How.XPATH,using = ".//section[@class='BurgerIngredients_ingredients__1N8v2']/div/div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span")
+    private SelenideElement sectionTextOnTab;
+
     public Boolean isVisibleButtonEnterInAccount(){
         placeOrderButton.should(Condition.visible);
         return placeOrderButton.isDisplayed();
@@ -84,6 +88,10 @@ public class MainPage {
 
     public Boolean isVisibleIngredients(){
         return ingredientTextOnIngredientList.isDisplayed();
+    }
+
+    public String getTextActiveTab(){
+        return sectionTextOnTab.getText();
     }
 
 }

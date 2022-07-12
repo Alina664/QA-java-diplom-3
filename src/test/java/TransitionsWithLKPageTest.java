@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 @Epic("Go to page")
 public class TransitionsWithLKPageTest {
+
     private final String email = "alina22222@yandex.ru";
     private final String password = "12345678";
     LoginPage addUser;

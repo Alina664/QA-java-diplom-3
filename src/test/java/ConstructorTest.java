@@ -20,22 +20,22 @@ public class ConstructorTest {
     @Description("При нажатии на вкладку Соусы, в блоке с ингридиентами список перемещается к соусам")
     public void goToSauce () {
         mainPage.clickSauce();
-        assertTrue("Проверяем видимость слова Соусы",mainPage.isVisibleSauce());
+        assertEquals("Проверяем какая вкладка сейчас активна, д.б. соусы","Соусы", mainPage.getTextActiveTab());
     }
 
     @Test
-    @Description("При нажатии на вкладку Начинки, в блоке с ингридиентами список перемещается к начинкам")
+    @Description("При нажатии на вкладку Начинки, а затем на Булки, в блоке с ингридиентами список перемещается к булкам")
     public void goToBun () {
         mainPage.clickIngredients();
         mainPage.clickBun();
-        assertTrue("Проверяем видимость слова Начинки",mainPage.isVisibleIngredients());
+        assertEquals("Проверяем какая вкладка сейчас активна, д.б. Булки", "Булки", mainPage.getTextActiveTab());
     }
 
     @Test
-    @Description("При нажатии на вкладку Булки, в блоке с ингридиентами список перемещается к булкам")
+    @Description("При нажатии на вкладку Начинки, в блоке с ингридиентами список перемещается к Начинкам")
     public void goToIngredients () {
         mainPage.clickIngredients();
-        assertTrue("Проверяем видимость слова Булки", mainPage.isVisibleIngredients());
+        assertEquals("Проверяем какая вкладка сейчас активна, д.б. Начинки", "Начинки", mainPage.getTextActiveTab());
     }
 
     @After
